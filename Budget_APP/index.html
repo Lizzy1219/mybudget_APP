@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="一個簡單的記帳網頁，幫助你輕鬆管理收入和支出。">
+    <meta name="keywords" content="記帳, 財務管理, 網頁應用, 記錄支出, 記錄收入, 記帳網頁">
+    <meta name="author" content="Lizzy">
+    <title>MyMoney</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>MyMoney</h1>
+    <hr>
+
+    <div class="input d-flex">
+        <!--支出收入輸入-->
+        <div class="input-container">
+            <div class="input-button"></div>
+            <button id="expense-button">支出</button>
+            <button id="income-button">收入</button>
+        </div>
+        <select id="category">
+            <option value="food">食品</option>
+            <option value="transport">交通</option>
+            <option value="entertainment">娛樂</option>
+            <option value="study">學習</option>
+            <option value="sport">運動</option>
+            <option value="medical">醫療</option>
+            <option value="work">工作</option>
+            <option value="other">其他</option>
+        </select>
+        <input type="number" id="amount" placeholder="金額輸入">
+        <input type="text" id="note" placeholder="備註">
+        <input type="date" id="transaction-date" placeholder="選擇日期">
+        <button onclick="saveTransaction()">保存</button>
+    </div>
+
+    <!--預算輸入-->
+    <div class="inputbudget-container">
+        <input type="number" id="budget-amount" placeholder="請輸入預算">
+        <button onclick="setBudget()">保存</button>
+    </div>
+
+    <div class="container">
+        <!-- 左側：支出 -->
+        <div class="left-section">
+            <h3>預算：$<span id="current-budget">0.00</span></h3>
+            <h3>總支出：$<span id="total-amount">0</span></h3>
+            <h2>支出紀錄</h2>
+            <ul id="expense-list"></ul>
+        </div>
+
+        <!-- 中間：收入 -->
+        <div class="middle-section">
+            <h3>總收入：$<span id="total-income">0</span></h3>
+            <h2>收入紀錄</h2>
+            <ul id="income-list"></ul>
+        </div>
+
+        <!-- 右側：圖表和淨收入 -->
+        <div class="right-section">
+            <h3>淨收入：$<span id="net-amount">0</span></h3>
+            <h2>圖表</h2>
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+    <hr>
+    <div class="bottom-range">
+        <div class="bottom-set">
+            <label for="theme">選擇主題：</label>
+            <select id="theme" onchange="saveThemeSetting()">
+                <option value="dark">深色模式</option>
+                <option value="light">淺色模式</option>
+            </select>
+
+            <label for="layout">選擇佈局：</label>
+            <select id="layout" onchange="saveLayoutSetting()">
+                <option value="wide">寬</option>
+                <option value="narrow">窄</option>
+            </select>
+        </div>
+
+        <button onclick="exportToCSV()">匯出</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
+
